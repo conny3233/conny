@@ -1,22 +1,28 @@
-# 표준 체중을 구하는 프로그램 작성
-# 남자: 키*키*22
-# 여자: 키*키*21
+def dfs(graph, start):
+    visited = set()      # 방문한 정점 기록
+    stack = [start]      # 탐색 후보 (LIFO 스택)
+    route = []           # 실제 방문 순서 기록
 
-# 조건1: 표준체중은 별도의 함수 내에서 계산
-# 조건2: 표준체중은 소수점 둘째자리까지 표시
+    while stack:
+        v = stack.pop()              # 스택에서 하나 꺼냄
+        if v not in visited:         # 아직 방문 안 했으면
+            visited.add(v)           # 방문 처리
+            route.append(v)          # 방문 경로에 기록
+            # 이웃들을 스택에 추가 (뒤에 넣은 게 먼저 나오므로 역순으로 넣으면 재귀 DFS 순서와 같음)
+            for neighbor in reversed(graph[v]):
+                if neighbor not in visited:
+                    stack.append(neighbor)
 
-# ex) 키 175cm 남자의 표준 체중은 67.38kg입니다
+    return route
 
+# 그래프 예시
+graph = {
+    0: [1, 2],
+    1: [3, 4],
+    2: [5],
+    3: [],
+    4: [],
+    5: []
+}
 
-def std_weight(height,gender):
-    if gender == "남자":
-        return (height/100)**2*22
-    else:
-        return (height/100)**2*21
-
-print("키를 입력해주세요: ") 
-height = float(input())
-print("성별을 입력해주세요: ") 
-gender = str(input())
-weight = std_weight(height,gender)
-print("키 {0:.0f}cm {1}의 표준 체중은 {2:.2f}kg입니다".format(height,gender,weight))
+print(dfs(graph, 0))   # 출력: [0, 1, 3, 4, 2, 5]
