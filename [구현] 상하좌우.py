@@ -7,7 +7,7 @@
 # 이때  여행가 A가 N x N 크기의  정사각형  공간을  벗어나는  움직임은  무시된다. 예를  들어(1,1)의  위치에서 L 혹은 U를  만나면  무시된다.
 
 print("N x N 의 공간을 설정하세요. N:",end=" ")
-N = int(input().strip())
+N = int(input())
 print("이동할 계획서를 입력하세요.:", end=" ")
 plans = input().split()
 
@@ -23,9 +23,10 @@ moves = {
 for p in plans:
     dx, dy = moves[p]
     nx, ny = x + dx, y + dy
-    # 경계 검사: 1 ≤ nx, ny ≤ N
+
     if 1 <= nx <= N and 1 <= ny <= N:
         x, y = nx, ny
     else:
         continue
+    
 print(x, y)
