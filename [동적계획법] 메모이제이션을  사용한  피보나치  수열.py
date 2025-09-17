@@ -11,12 +11,8 @@
 
 n=int(input().strip())
 
-memo = {0:0, 1:1}
-def fib(n):
-    if n in memo:
-        return memo[n]
-    else:
-        memo[n] = fib(n-1) + fib(n-2)
-        return memo[n]
-
-print(fib(n))
+dp = [0]*(n+1)
+dp[0], dp[1] = 0, 1
+for i in range(2, n+1):
+    dp[i] = dp[i-1] + dp[i-2]
+print(dp[n])
