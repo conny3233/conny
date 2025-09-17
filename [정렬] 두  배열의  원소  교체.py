@@ -15,7 +15,9 @@ A = list(map(int, input().split()))
 B = list(map(int, input().split()))
 
 A.sort()
+print("\n배열 A(오름차순): {0}".format(A))
 B.sort(reverse=True)
+print("배열 B(내림차순): {0}\n".format(B))
 
 for i in range(k):
     if A[i] < B[i]:
@@ -24,5 +26,5 @@ for i in range(k):
         break   
 
 A.sort()
-print("바꿔치기 된 배열 A: {0}".format(A))
+print("바꿔치기 된 배열 A: {0}\n".format(A))
 print("배열 A의 모든 원소 값의 합: {0}".format(sum(A)))
