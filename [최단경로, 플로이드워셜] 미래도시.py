@@ -40,5 +40,6 @@ X, K = map(int,input().split())
 
 if graph[X][K] == INF:
     print("-1")
+    
 else:
     print(graph[1][X]+graph[X][K]+1)
